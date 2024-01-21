@@ -27,5 +27,5 @@ async function createNewFiles() {
   } catch (err) { stdout.write(`\nAn error occurred while copying: ${err}`); }
 }
 
-createNewFolder()
+createNewFolder();
   
