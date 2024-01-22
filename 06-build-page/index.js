@@ -82,6 +82,7 @@ async function getComponentsContent() {
         const component = file.slice(0, -5);
         componentsObj[component] = contentFile;
       }
+      await addComponentsContentToIndexHtml();
     });
   } catch (err) { stdout.write(`Error: ${err}`); }
 }
@@ -102,7 +103,6 @@ async function addComponentsContentToIndexHtml() {
 async function saveComponentsContentToIndexHtml(indexContent) {
   try {
     const fs = require('fs');
-    const path = require('path');
     const file = path.join(__dirname + '/project-dist/', 'index.html');
     const fileStream = fs.createWriteStream(file);
     fileStream.write(indexContent);
@@ -117,7 +117,6 @@ async function createBundle() {
   await createStyleFile();
   await createIndexHtml(pathFolder, pathNewFolderProject);
   await getComponentsContent();
-  await setTimeout(() => { addComponentsContentToIndexHtml(); }, 500);
 }
 
 createBundle();
